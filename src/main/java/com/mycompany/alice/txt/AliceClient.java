@@ -35,12 +35,15 @@ public class AliceClient {
 
 			while (true) {
 
-				BufferedReader br = new BufferedReader(new FileReader("Alice.txt"));
-				String line;
-				while ((line = br.readLine()) != null) {
-					System.out.println(line); // outputting the alice.txt to the screen
-				}
+				System.out.println("Enter chapter number :");
+				int chapternumber = scan.nextInt();
 
+				SeToServer.writeInt(chapternumber);
+				SeToServer.flush();
+				
+				 String chapter = ReFromServer.readUTF();
+                
+                System.out.println(chapter);
 			}
 
 		} catch (IOException ex) {
